@@ -1,13 +1,14 @@
 body {
     font-family: Arial;
     text-align: center;
-    background-color: #f5f5f5;
+    background-color: white;
+    margin: 0;
 }
 .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: red;
+    background: rgb(142, 185, 152);
     color: white;
     padding: 10px;
 }
@@ -23,12 +24,11 @@ input {
 }
 .menu {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
 .item {
-    background: white;
+    background: rgb(236, 232, 192);
     padding: 15px;
     border: 1px solid #ccc;
     width: 150px;
@@ -54,18 +54,12 @@ li button {
         display: none;
     }
 }
-body {
-    font-family: Arial;
-    background-color: #f5f5f5;
-    margin: 0;
-}
 .login-box {
     width: 300px;
-    background: white;
+    background: rgb(155, 212, 234);
     padding: 20px;
     margin: 80px auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px gray;
     text-align: center;
 }
 .login-box input {

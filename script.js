@@ -1,48 +1,52 @@
-let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 function addToCart(name, price) {
-    cartData.push({ name, price });
+    cart.push({ name: name, price: price });
     saveCart();
-    displayCart();
+    showCart();
 }
-function displayCart() {
-    let cart = document.getElementById("cart");
-    cart.innerHTML = "";
+function showCart() {
+    let list = document.getElementById("cart");
+    list.innerHTML = "";
     let total = 0;
-    cartData.forEach((item, index) => {
+    for (let i = 0; i < cart.length; i++) {
+        let item = cart[i];
         let li = document.createElement("li");
-        li.innerHTML = `
-            ${item.name} - ₹${item.price}
-            <button onclick="removeItem(${index})">Remove</button>
-        `;
-        cart.appendChild(li);
+        li.innerHTML =
+            item.name + " - ₹" + item.price +
+            ` <button onclick="removeItem(${i})">REMOVE</button>`;
+        list.appendChild(li);
         total += item.price;
-    });
+    }
     document.getElementById("total").textContent = "Total: ₹" + total;
 }
 function removeItem(index) {
-    cartData.splice(index, 1);
+    cart.splice(index, 1);
     saveCart();
-    displayCart();
+    showCart();
 }
+
 function clearCart() {
-    cartData = [];
+    cart = [];
     saveCart();
-    displayCart();
+    showCart();
 }
+
 function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cartData));
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 function placeOrder() {
     let name = document.getElementById("username").value;
     if (name === "") {
         alert("Please enter your name!");
         return;
     }
-    if (cartData.length === 0) {
+    if (cart.length === 0) {
         alert("Cart is empty!");
         return;
     }
-    localStorage.setItem("order", JSON.stringify(cartData));
+    localStorage.setItem("order", JSON.stringify(cart));
     localStorage.setItem("username", name);
     clearCart();
     window.location.href = "receipt.html";
@@ -51,4 +55,4 @@ function logout() {
     localStorage.removeItem("loggedIn");
     window.location.href = "login.html";
 }
-displayCart();
+showCart();
