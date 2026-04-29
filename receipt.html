@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receipt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🧾 Order Receipt</h1>
+<h2 style="color: green;">🎉 Congratulations!</h2>
+<p>Your order has been placed successfully.</p>
+<p id="datetime"></p>
+<p id="customer"></p>
+<ul id="bill"></ul>
+<h3 id="total"></h3>
+<button onclick="goHome()">Back to Home</button>
+<button onclick="printReceipt()">🖨️ Print Receipt</button>
+<script>
+let order = JSON.parse(localStorage.getItem("order")) || [];
+let name = localStorage.getItem("username");
+document.getElementById("customer").textContent = "Customer: " + name;
+let total = 0;
+let bill = document.getElementById("bill");
+order.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item.name + " - ₹" + item.price;
+    bill.appendChild(li);
+    total += item.price;
+});
+document.getElementById("total").textContent = "Total: ₹" + total;
+function goHome(){
+    window.location.href = "index.html";
+}
+function printReceipt(){
+    window.print();
+}
+</script>
+</body>
+</html>
