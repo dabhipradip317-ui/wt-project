@@ -49,11 +49,6 @@ li button {
     background: red;
     color: white;
 }
-@media print {
-    button {
-        display: none;
-    }
-}
 .login-box {
     width: 300px;
     background: rgb(155, 212, 234);
